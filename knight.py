@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 from typing import List, Tuple
 import string
 
@@ -45,7 +44,7 @@ def shortest_path(start: tuple = ('a', 1), target: tuple = ('h', 8), board_width
                 continue
             if current_cell not in moves_tree:
                 moves_tree[current_cell] = []
-            moves_tree[current_cell].append(chess_board_cell)
+                moves_tree[current_cell].append(chess_board_cell)
             if chess_board_cell == target:
                 return get_parents(moves_tree)
             visited_cells.append(chess_board_cell)
