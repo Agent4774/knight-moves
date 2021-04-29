@@ -25,7 +25,7 @@ def get_available_moves(cell, axis_Y):
             available_moves.append(move)
     return available_moves
 
-def shortest_path(start: tuple = ('c', 3), target: tuple = ('d', 8), board_width: int = 8, board_height: int = 8) -> List[Tuple[str, int]]:
+def shortest_path(start: tuple = ('a', 1), target: tuple = ('h', 8), board_width: int = 8, board_height: int = 8) -> List[Tuple[str, int]]:
     if start == target:
         return start
     queue = [start]
