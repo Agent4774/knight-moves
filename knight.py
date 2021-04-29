@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 from typing import List, Tuple
+import string
 
 
-def get_parents(tree):
+def get_parents(tree,):
     reversed_keys = [key for key in tree][::-1]
     new_tree = {}
     parents = []
@@ -16,27 +17,28 @@ def get_parents(tree):
             parents.append(key)
     return parents[::-1]
 
-def get_available_moves(cell, axis_Y):
+def get_available_moves(cell, axis_Y, width):
     all_possible_moves = [(-2, 1), (-1, 2), (1, 2), (2, 1), (2, -1), (1, -2), (-1, -2), (-2, -1)]
     available_moves = []
     for move in all_possible_moves:
-        if 0 < cell[1] + move[0] <= 8 \
-        and 0 < axis_Y.index(cell[0]) + move[1] <=7:
+        if 0 < cell[1] + move[0] <= width \
+        and 0 < (axis_Y.index(cell[0]) + 1) + move[1] <= width:
             available_moves.append(move)
     return available_moves
 
 def shortest_path(start: tuple = ('a', 1), target: tuple = ('h', 8), board_width: int = 8, board_height: int = 8) -> List[Tuple[str, int]]:
+    if any([board_width > 26, board_width != board_height]):
+        return '1) The board is not of square shape\n2) 26 is a max value for both width and height'
     if start == target:
         return start
     queue = [start]
-    axis_Y = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h']
+    axis_Y = list(string.ascii_lowercase)
     visited_cells = []
     moves_tree = {}
 
     while queue:
         current_cell = queue.pop(0)
-        available_moves = get_available_moves(current_cell, axis_Y)
-        
+        available_moves = get_available_moves(current_cell, axis_Y, board_width)
         for move in available_moves:
             chess_board_cell = (axis_Y[axis_Y.index(current_cell[0]) + move[1]], move[0] + current_cell[1])
             if chess_board_cell in visited_cells:
