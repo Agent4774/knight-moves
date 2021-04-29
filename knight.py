@@ -27,10 +27,10 @@ def get_available_moves(cell, axis_Y, width):
     return available_moves
 
 def shortest_path(start: tuple = ('a', 1), target: tuple = ('h', 8), board_width: int = 8, board_height: int = 8) -> List[Tuple[str, int]]:
-    if any([board_width > 26, board_width != board_height]):
-        return '1) The board is not of square shape\n2) 26 is a max value for both width and height'
     if start == target:
         return start
+    if any([board_width > 26, board_width != board_height]):
+        return '1) The board is not of square shape\n2) 26 is a max value for both width and height'
     queue = [start]
     axis_Y = list(string.ascii_lowercase)
     visited_cells = []
