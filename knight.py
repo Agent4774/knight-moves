@@ -3,7 +3,7 @@ from typing import List, Tuple
 import string
 
 
-def get_parents(tree,):
+def get_parents(tree):
     reversed_keys = [key for key in tree][::-1]
     new_tree = {}
     parents = []
